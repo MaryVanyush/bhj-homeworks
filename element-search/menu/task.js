@@ -1,5 +1,5 @@
 const menuLink = Array.from(document.getElementsByClassName('menu__link'));
-// const menuSub = Array.from(document.getElementsByClassName('menu_sub'));
+const menuSub = Array.from(document.getElementsByClassName('menu_sub'));
 
 // задача №1   ~~~~~~~~~~~~~~~ обращение по индексам ~~~~~~~~~~~~~~~~~~~~
 
@@ -47,6 +47,9 @@ const menuLink = Array.from(document.getElementsByClassName('menu__link'));
 menuLink.forEach(element => { 
     if(element.textContent === 'О компании' || element.textContent === 'Услуги'){
         element.onclick = function() {
+            for(activeMenu of menuSub){
+                activeMenu.classList.remove('menu_active')
+            }
             element.nextElementSibling.classList.toggle('menu_active');
             return false;
         }
