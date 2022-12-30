@@ -19,6 +19,7 @@ class Game {
   registerEvents() {
     let timerId = null;
     let seconds = document.getElementById("timer");
+    seconds.textContent = this.wordElement.textContent.length;
     const timer = () => {
     if(seconds.textContent === '0'){
         this.fail();
@@ -31,18 +32,18 @@ class Game {
 
   let updateTimer = () => {
     clearInterval(timerId);
-    seconds.textContent = '5';
+    seconds.textContent = this.wordElement.textContent.length;
     timerId = setInterval(timer, 1000);
   }
 
     let registerSimbol = (event) => {
       let currentSymbol = this.currentSymbol.textContent;
-      let eventSimbol;
+      let eventSymbol;
       if(!event){
         return;
       }
-      eventSimbol = event.key.toLowerCase();
-      if (currentSymbol === eventSimbol){
+      eventSymbol = event.key.toLowerCase();
+      if (currentSymbol === eventSymbol){
           this.success();
           updateTimer();
         } else {
