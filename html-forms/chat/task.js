@@ -1,16 +1,11 @@
 const chatWidget = document.querySelector('.chat-widget')
 const chatWidgetInput = document.getElementById('chat-widget__input')
+const messages = document.querySelector( '.chat-widget__messages' )
 
 chatWidget.addEventListener('click', () => chatWidget.classList.add('chat-widget_active'))
 chatWidgetInput.addEventListener('blur', () => {
   let timeoutId = setTimeout(() => {
-
-
-// не срабатывает условие: ??????????????????????????
-
-
-    if(chatWidgetInput.addEventListener('focus', () => {})){
-    // if(chatWidgetInput.focus){
+    if(chatWidgetInput == document.activeElement){
       clearTimeout(timeoutId)
       return 
     } 
@@ -19,8 +14,7 @@ chatWidgetInput.addEventListener('blur', () => {
         <div class="message__time">${messageBot[0].querySelector('.message__time').textContent = new Date().toTimeString().replace(/:[0-9]{2,2} .*/, '')}</div>
         <div class="message__text">${messageBot[0].querySelector('.message__text').textContent = "У Вас остались вопросы?"}</div>
         </div>`
-    
-    
+        messages.lastChild.scrollIntoView({block: "center", behavior: "smooth"})    // автоскролл вниз
   }, 3000)
 })
 
@@ -40,11 +34,6 @@ function getMessage() {
 }
 
 
-// как сделать автоскролл вниз ??????????????????????????????
-
-
-chatWidgetInput.addEventListener('keydown', sendMessage)
-const messages = document.querySelector( '.chat-widget__messages' );
 function sendMessage(e){
   if(e.code === 'Enter'){
     const messageClient = [...document.querySelectorAll('.message_client')]
@@ -52,7 +41,7 @@ function sendMessage(e){
     if(chatWidgetInput.value.length > 0) {
       let newText = children.querySelector('.message__text').textContent
       let newData = children.querySelector('.message__time').textContent
-      newData = new Date().toTimeString().replace(/:[0-9]{2,2} .*/, '');
+      newData = new Date().toTimeString().replace(/:[0-9]{2,2} .*/, '')
       newText = chatWidgetInput.value
       messages.innerHTML += ` <div class="message message_client">
         <div class="message__time">${newData}</div>
@@ -66,5 +55,9 @@ function sendMessage(e){
         </div>`
     }
   })
+  messages.lastChild.scrollIntoView({block: "center", behavior: "smooth"})   // автоскролл вниз
   }
 }
+
+
+chatWidgetInput.addEventListener('keydown', sendMessage)
