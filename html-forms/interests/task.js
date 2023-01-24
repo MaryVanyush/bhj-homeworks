@@ -20,13 +20,34 @@ interestCheck.forEach(el => addEventListener('click', changeInterest))
 
 // ~~~~~~~2 Повышенный уровень сложности (неограниченный уровень вложенности)
 
+
 function changeInterest(){
-    checkParent()
+    let eventParentContainer = event.target.closest('.interest')
     let containetEvent = event.target.closest('ul')
-    console.log(containetEvent)
     let elementsOfcontainetEvent = [...containetEvent.querySelectorAll('input')]
+    let childrenList = [...eventParentContainer.querySelectorAll('li')]
+    let сheckBoxEvent = eventParentContainer.querySelector('input')
+    if(childrenList.length != 0){
+        checkChildren(childrenList, сheckBoxEvent)
+    }
     let parentCheckBox = containetEvent.parentElement.closest('.interest').querySelector('.interest__check')
-    console.log(parentCheckBox)
+    if(parentCheckBox){
+        checkParent(elementsOfcontainetEvent, parentCheckBox)
+    }  
+}
+
+function checkChildren(childrenList, сheckBoxEvent){
+    childrenList.forEach((list) => {
+        let checkBox = [...list.querySelectorAll('input')]
+        if(сheckBoxEvent.checked === true){
+            checkBox[0].checked = true
+        } else if(сheckBoxEvent.checked === false){
+            checkBox[0].checked = false
+        }
+    })
+}
+
+function checkParent(elementsOfcontainetEvent, parentCheckBox){
     let length = 0
     for(let i = 0; i < elementsOfcontainetEvent.length; i++){
         if (elementsOfcontainetEvent[i].checked === true){
@@ -43,20 +64,11 @@ function changeInterest(){
             parentCheckBox.indeterminate = true
             parentCheckBox.checked= false
     }
+    let parentParentCheckBox = parentCheckBox.closest('.interests_active').parentElement.querySelector('input')
+    let parentParentChildren = [...parentCheckBox.closest('.interests_active').querySelectorAll('input')]
+    if(parentParentCheckBox){
+        checkParent(parentParentChildren, parentParentCheckBox)
+    } else if(parentParentCheckBox === undefined){
+        return
+    }
 }
-
-function checkParent(){
-    let eventParentContainer = event.target.closest('.interest')
-    let parentCheckBox = eventParentContainer.querySelector('input')
-    let childrenList = [...eventParentContainer.querySelectorAll('li')]
-    childrenList.forEach((list) => {
-        let checkBox = [...list.querySelectorAll('input')]
-        if(parentCheckBox.checked === true){
-            checkBox[0].checked = true
-        } else if(parentCheckBox.checked === false){
-            checkBox[0].checked = false
-        }
-    })
-}
-
-
