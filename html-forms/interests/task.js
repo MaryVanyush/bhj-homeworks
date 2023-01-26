@@ -14,7 +14,7 @@ const interest = [...document.querySelectorAll('ul.interests.interests_active')]
 //     })
 // }
 
-interestCheck.forEach(el => addEventListener('click', changeInterest))
+interestCheck.forEach(el => addEventListener('change', changeInterest))
 
 
 
@@ -30,7 +30,7 @@ function changeInterest(){
     if(childrenList.length != 0){
         checkChildren(childrenList, сheckBoxEvent)
     }
-    let parentCheckBox = containetEvent.parentElement.closest('.interest').querySelector('.interest__check')
+    let parentCheckBox = containetEvent.parentElement.closest('.interest') ? containetEvent.parentElement.closest('.interest').querySelector('.interest__check'):null
     if(parentCheckBox){
         checkParent(elementsOfcontainetEvent, parentCheckBox)
     }  
@@ -64,8 +64,8 @@ function checkParent(elementsOfcontainetEvent, parentCheckBox){
             parentCheckBox.indeterminate = true
             parentCheckBox.checked= false
     }
-    let parentParentCheckBox = parentCheckBox.closest('.interests_active').parentElement.querySelector('input')
-    let parentParentChildren = [...parentCheckBox.closest('.interests_active').querySelectorAll('input')]
+    let parentParentCheckBox = parentCheckBox.closest('.interests_active') ? parentCheckBox.closest('.interests_active').parentElement.querySelector('input') : null
+    let parentParentChildren = parentCheckBox.closest('.interests_active') ? parentCheckBox.closest('.interests_active').querySelectorAll('input') : null
     if(parentParentCheckBox){
         checkParent(parentParentChildren, parentParentCheckBox)
     } else if(parentParentCheckBox === undefined){
