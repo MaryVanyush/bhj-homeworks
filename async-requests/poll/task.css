@@ -1,0 +1,53 @@
+body {
+  font-family: Arial;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  
+}
+
+.modal_active {
+  display: flex;
+}
+
+.modal__content {
+  border-radius: 20px;
+  width: 400px;
+  height: 200px;
+  background: #fff;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal__title {
+  padding-bottom: 20px;
+  border-bottom: 2px solid gray;
+}
+
+.btn {
+  text-decoration: none;
+  color: #70acc2;
+  padding: 20px 20px;
+}
+
+.card {
+  width: 625px;
+}
+
+.poll__title {
+  margin-bottom: 20px;
+}
