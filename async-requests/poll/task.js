@@ -18,7 +18,7 @@ class Poll {
 }
 
 
-let xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest()
 xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/poll')
 xhr.send()
 
@@ -27,8 +27,10 @@ function getResponse(){
     modal.classList.toggle('modal_active')
 }
 
-xhr.addEventListener('readystatechange', () => {
-    if(xhr.readyState === xhr.DONE){
+xhr.addEventListener('load', () => {
+    if(xhr.status != 200){
+        return
+    }else {
         const dataObject = (JSON.parse(xhr.responseText)).data
         const poll = new Poll()
         poll.fillPollTitle(dataObject.title)
@@ -40,4 +42,8 @@ xhr.addEventListener('readystatechange', () => {
         const modalCloseBtn = document.querySelector('.btn')
         modalCloseBtn.addEventListener('click', getResponse)
     }
+})
+
+xhr.addEventListener('error', () => {
+    alert('Запрос не удался')
 })

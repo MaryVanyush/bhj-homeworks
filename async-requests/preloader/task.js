@@ -24,12 +24,14 @@ class RatesBoard {
 
 const loader = document.getElementById('loader')
 
-let xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest()
 xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/slow-get-courses')
 xhr.send()
 
-xhr.addEventListener('readystatechange', () => {
-    if(xhr.readyState === xhr.DONE){
+xhr.addEventListener('load', () => {
+    if(xhr.status != 200){
+        return
+    } else {
         const valutesObject = (JSON.parse(xhr.responseText)).response.Valute
         Object.values(valutesObject).forEach(element => {
             loader.classList.remove('loader_active')
@@ -37,4 +39,9 @@ xhr.addEventListener('readystatechange', () => {
             ratesBoard.fillItem(element.CharCode, element.Value)
         });
     }
+})
+
+xhr.addEventListener('error', () => {
+    loader.classList.remove('loader_active')
+    alert('Запрос не удался')
 })
