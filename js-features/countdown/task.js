@@ -72,7 +72,7 @@ timerId = setInterval(timer, 1000)
 // if(seconds.textContent === '0'){
 //     clearInterval(timerId);
 //     let url = document.createElement('a');
-//     url.href = "https://hitster.fm/hans-zimmer/cornfield-chase"
+//     url.href = "https://inter-net.pro/music/pesnya.mp3"
 //     location = url.href;
 //     const button = document.getElementById('push-me');
 //     button.click();
