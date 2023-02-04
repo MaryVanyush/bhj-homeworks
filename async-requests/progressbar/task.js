@@ -2,29 +2,37 @@ const progress = document.getElementById('progress')
 const btnSend = document.getElementById('send')
 
 
-btnSend.addEventListener('submit', f)
+btnSend.addEventListener('click', sendFile)
 
-function f(){
-    const file = document.getElementById('file').files[0]
-    event.preventDefault()
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload')
-    
-    xhr.onprogress = function(event) {
-        console.log(`Отправлено ${event.loaded} из ${event.total} байт`)
-        progress.value = (event.loaded)/(event.total)
-    }
+function sendFile(){
+    const form = document.getElementById('form')
+    form.onsubmit = (() => {
+        const file = document.getElementById('file')
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload')
 
-    xhr.onloadend = function() {
-        if (xhr.status == 200) {
-            console.log("Успех")
-        } else {
-            console.log("Ошибка " + this.status)
-        }
-        }
+        xhr.upload.onload = function() {
+            if (xhr.status == 200) {
+                console.log("Успех")
+            } else {
+                console.log("Ошибка " + this.status)
+            }
+            }
 
-    
-    let formData = new FormData()
-    formData.append('file', file)
-    xhr.send(formData)
+            xhr.upload.onprogress = function(event) {
+                // console.log(`Отправлено ${event.loaded} из ${event.total} байт`)
+                // console.log(event.lengthComputable)
+                // console.log(event.total)
+                progress.value = (event.loaded)/(event.total)
+            }
+            
+            xhr.onerror = function() {
+                console.log('error')
+            }
+            
+            let formData = new FormData()
+            formData.append('file', file.files[0])
+            xhr.send(formData)
+            event.preventDefault()
+    })
 }
