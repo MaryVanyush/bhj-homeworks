@@ -1,0 +1,90 @@
+.signin {
+  display: none;
+}
+.signin_active {
+  display: block;
+}
+.control {
+    width: 100%;
+    display: block;
+    padding: 10px 20px;
+    margin: 0 0 20px 0;
+    font-family: Golos, Arial, sans-serif;
+    border: 1px solid #e2e2e2;
+    box-sizing: border-box;
+}
+
+.btn {
+  font-family: Golos, Arial, sans-serif;
+  color: #fff;
+  background-color: #06f;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 0 20px 0;
+  overflow: hidden;
+  outline: none;
+  padding: 8px 12px;
+  text-align: center;
+  transition: 0.3s ease;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.welcome {
+  display: none;
+}
+
+.welcome_active {
+  display: block;
+  text-align: center;
+}
+
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  
+}
+
+.modal_active {
+  display: flex;
+}
+
+.modal__content {
+  border-radius: 20px;
+  width: 400px;
+  height: 200px;
+  background: #fff;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal__title {
+  padding-bottom: 20px;
+  border-bottom: 2px solid gray;
+}
+
+.button {
+  text-decoration: none;
+  color: #70acc2;
+  padding: 20px 20px;
+}

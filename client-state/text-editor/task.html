@@ -5,9 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Текстовый редактор</title>
     <link rel="stylesheet" href="task.css">
-    <link rel="stylesheet" href="../../assets/css/style.css" />
-    <title>Таймер обратного отсчёта</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
     <header class="header">
@@ -15,15 +15,13 @@
           <a href="https://netology.ru/" class="logo__link"></a>
         </div>
         <h1 class="header__title">
-            Домашнее задание к занятию 1.1 «Возможности JavaScript в браузере». Таймер обратного отсчёта
+            Домашнее задание к занятию 3.2 «Хранение состояния на клиенте». Текстовый редактор.
         </h1>
     </header>
     <main class="content">
-        <a id="push-me" href="https://netology.ru/backend/api/user/programs/29857/pdf_certificate" download target="_blank"></a>
         <div class="card">
-            <div id="status">
-                До окончания конкурса осталось секунд: <span id="timer">4</span>
-            </div>
+            <textarea id="editor" cols="30" rows="10"></textarea>
+            <input type="reset" value="Clear form" class="reset">
         </div>
     </main>    
     <script src="task.js"></script>
