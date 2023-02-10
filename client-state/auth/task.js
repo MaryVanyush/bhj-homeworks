@@ -6,7 +6,7 @@ const userId = localStorage.getItem('userId')
 
 function getDataFromLocalstorage() {
     try {
-        if(localStorage.userId != ''){
+        if(localStorage.userId !== undefined){
             console.log(localStorage.userId)
             signin.classList.remove('signin_active')
             welcome.classList.add('welcome_active')
